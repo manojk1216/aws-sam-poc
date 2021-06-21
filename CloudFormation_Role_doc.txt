@@ -1,0 +1,1477 @@
+{
+  "roleName": "sqs_lambda_dynamo-role-h6a1z6y2",
+  "policies": [
+    {
+      "name": "AmazonSQSFullAccess",
+      "id": "ANPAI65L554VRJ33ECQS6",
+      "type": "managed",
+      "arn": "arn:aws:iam::aws:policy/AmazonSQSFullAccess",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": [
+              "sqs:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AmazonS3FullAccess",
+      "id": "ANPAIFIR6V6BVTRAHWINE",
+      "type": "managed",
+      "arn": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CloudWatchFullAccess",
+      "id": "ANPAIKEABORKUXN6DEAZU",
+      "type": "managed",
+      "arn": "arn:aws:iam::aws:policy/CloudWatchFullAccess",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": [
+              "autoscaling:Describe*",
+              "cloudwatch:*",
+              "logs:*",
+              "sns:*",
+              "iam:GetPolicy",
+              "iam:GetPolicyVersion",
+              "iam:GetRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/events.amazonaws.com/AWSServiceRoleForCloudWatchEvents*",
+            "Condition": {
+              "StringLike": {
+                "iam:AWSServiceName": "events.amazonaws.com"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AmazonDynamoDBFullAccess",
+      "id": "ANPAINUGF2JSOSUY76KYA",
+      "type": "managed",
+      "arn": "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Action": [
+              "dynamodb:*",
+              "dax:*",
+              "application-autoscaling:DeleteScalingPolicy",
+              "application-autoscaling:DeregisterScalableTarget",
+              "application-autoscaling:DescribeScalableTargets",
+              "application-autoscaling:DescribeScalingActivities",
+              "application-autoscaling:DescribeScalingPolicies",
+              "application-autoscaling:PutScalingPolicy",
+              "application-autoscaling:RegisterScalableTarget",
+              "cloudwatch:DeleteAlarms",
+              "cloudwatch:DescribeAlarmHistory",
+              "cloudwatch:DescribeAlarms",
+              "cloudwatch:DescribeAlarmsForMetric",
+              "cloudwatch:GetMetricStatistics",
+              "cloudwatch:ListMetrics",
+              "cloudwatch:PutMetricAlarm",
+              "cloudwatch:GetMetricData",
+              "datapipeline:ActivatePipeline",
+              "datapipeline:CreatePipeline",
+              "datapipeline:DeletePipeline",
+              "datapipeline:DescribeObjects",
+              "datapipeline:DescribePipelines",
+              "datapipeline:GetPipelineDefinition",
+              "datapipeline:ListPipelines",
+              "datapipeline:PutPipelineDefinition",
+              "datapipeline:QueryObjects",
+              "ec2:DescribeVpcs",
+              "ec2:DescribeSubnets",
+              "ec2:DescribeSecurityGroups",
+              "iam:GetRole",
+              "iam:ListRoles",
+              "kms:DescribeKey",
+              "kms:ListAliases",
+              "sns:CreateTopic",
+              "sns:DeleteTopic",
+              "sns:ListSubscriptions",
+              "sns:ListSubscriptionsByTopic",
+              "sns:ListTopics",
+              "sns:Subscribe",
+              "sns:Unsubscribe",
+              "sns:SetTopicAttributes",
+              "lambda:CreateFunction",
+              "lambda:ListFunctions",
+              "lambda:ListEventSourceMappings",
+              "lambda:CreateEventSourceMapping",
+              "lambda:DeleteEventSourceMapping",
+              "lambda:GetFunctionConfiguration",
+              "lambda:DeleteFunction",
+              "resource-groups:ListGroups",
+              "resource-groups:ListGroupResources",
+              "resource-groups:GetGroup",
+              "resource-groups:GetGroupQuery",
+              "resource-groups:DeleteGroup",
+              "resource-groups:CreateGroup",
+              "tag:GetResources",
+              "kinesis:ListStreams",
+              "kinesis:DescribeStream",
+              "kinesis:DescribeStreamSummary"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+          },
+          {
+            "Action": "cloudwatch:GetInsightRuleReport",
+            "Effect": "Allow",
+            "Resource": "arn:aws:cloudwatch:*:*:insight-rule/DynamoDBContributorInsights*"
+          },
+          {
+            "Action": [
+              "iam:PassRole"
+            ],
+            "Effect": "Allow",
+            "Resource": "*",
+            "Condition": {
+              "StringLike": {
+                "iam:PassedToService": [
+                  "application-autoscaling.amazonaws.com",
+                  "application-autoscaling.amazonaws.com.cn",
+                  "dax.amazonaws.com"
+                ]
+              }
+            }
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+              "StringEquals": {
+                "iam:AWSServiceName": [
+                  "replication.dynamodb.amazonaws.com",
+                  "dax.amazonaws.com",
+                  "dynamodb.application-autoscaling.amazonaws.com",
+                  "contributorinsights.dynamodb.amazonaws.com",
+                  "kinesisreplication.dynamodb.amazonaws.com"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AWSLambda_FullAccess",
+      "id": "ANPAZKAPJZG4OXQPYWZ5D",
+      "type": "managed",
+      "arn": "arn:aws:iam::aws:policy/AWSLambda_FullAccess",
+      "document": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "cloudformation:DescribeStacks",
+              "cloudformation:ListStackResources",
+              "cloudwatch:ListMetrics",
+              "cloudwatch:GetMetricData",
+              "ec2:DescribeSecurityGroups",
+              "ec2:DescribeSubnets",
+              "ec2:DescribeVpcs",
+              "kms:ListAliases",
+              "iam:GetPolicy",
+              "iam:GetPolicyVersion",
+              "iam:GetRole",
+              "iam:GetRolePolicy",
+              "iam:ListAttachedRolePolicies",
+              "iam:ListRolePolicies",
+              "iam:ListRoles",
+              "lambda:*",
+              "logs:DescribeLogGroups",
+              "states:DescribeStateMachine",
+              "states:ListStateMachines",
+              "tag:GetResources",
+              "xray:GetTraceSummaries",
+              "xray:BatchGetTraces"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+              "StringEquals": {
+                "iam:PassedToService": "lambda.amazonaws.com"
+              }
+            }
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "logs:DescribeLogStreams",
+              "logs:GetLogEvents",
+              "logs:FilterLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*"
+          }
+        ]
+      }
+    }
+  ],
+  "resources": {
+    "s3": {
+      "service": {
+        "name": "Amazon S3",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTUyMi41MyIgeTE9IjQ2NS40NyIgeDI9Ii00MTYuNDciIHkyPSI1NzEuNTMiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTkwIC00NTYuNSAyNC41KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWI2NjBmIi8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM2Y2FlM2UiLz4KICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8L2RlZnM+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZD0iTTAgMGg3NXY3NUgweiIvPgogICAgICAgIDxwYXRoIGQ9Ik02MS40MyA0MC4wNmMtLjI5LTEuNTctMi4wNy0yLjY4LTMuMjktMy40Ny0uMzktLjI1LTEuNDYtLjY1LTEuNTUtMWEyLjM2IDIuMzYgMCAwMS4xLS43NGwxLTcuMTljLjI5LTIuMTEuNTctNC4yMi44Ni02LjMzLjI2LTEuOTQtLjY3LTMuMjQtMi4yNS00LjMzLTMuMjItMi4yMy03LjQyLTMuMTMtMTEuMjEtMy43NWE1NS44NSA1NS44NSAwIDAwLTE0LjM4LS40NyA0MCA0MCAwIDAwLTEyLjUzIDNjLTIuMTQgMS00Ljk0IDIuNTYtNC41OSA1LjI5IDEgOC4xMiAyLjE4IDE2LjIyIDMuMjcgMjQuMzNsMS41IDExLjEzYTQuMTMgNC4xMyAwIDAwMi40NiAzLjMzYzMuMSAxLjY4IDYuOTQgMi4xNiAxMC40IDIuNDhBNTEuNSA1MS41IDAgMDA0NSA2MS43M2MyLjg4LS41MyA4LjI0LTEuNCA4LjctNSAuNTctNC40NiAxLjItOC45MiAxLjgtMTMuMzdsLjIyLTEuMzZjMS42My4zOSA2LjI4IDEuMjIgNS43MS0xLjk0ek0zNi4wNSAxNC41YzYgMCAxMi44Ny42OCAxOC4yNSAzLjY0LjgzLjQ2IDIuNzYgMS40OSAyLjE4IDIuNzFTNTQuMSAyMi42OCA1MyAyMy4xMmEzMC44OCAzMC44OCAwIDAxLTQuODMgMS4zNSA2Mi4yOSA2Mi4yOSAwIDAxLTIxLjY2LjQ1IDI2LjggMjYuOCAwIDAxLTkuMzItMi43M2MtLjcyLS40MS0xLjkxLTEuMTUtMS41OC0yLjEzYTMgMyAwIDAxMS4xOC0xLjI2IDIwLjg0IDIwLjg0IDAgMDE3LjItMi45MSA1MC4zNSA1MC4zNSAwIDAxMTIuMDYtMS4zOXptMTUuNjggNDIuMTVjLS4xNSAxLjE3LTIuMDggMS43NS0zIDIuMDhhMjkuNiAyOS42IDAgMDEtNS44OCAxLjMyIDUwLjcyIDUwLjcyIDAgMDEtMTMuMzcgMCAyMi4yNCAyMi4yNCAwIDAxLTgtMi4xNyAyIDIgMCAwMS0xLjItMS43M2MtMS03LjkzLTIuMTQtMTUuODYtMy4yMS0yMy43OWwtMS4xNi04LjZhMjMuMjYgMjMuMjYgMCAwMDcuMyAyLjU2IDU5LjYyIDU5LjYyIDAgMDA4LjMxIDEuMDkgNjQuOCA2NC44IDAgMDAxNi4zOS0uOTEgMjQuMjcgMjQuMjcgMCAwMDguMjEtMi43NEw1NCAzOS40NmExMjAuNDMgMTIwLjQzIDAgMDEtMTQuODItNiA0LjI3IDQuMjcgMCAwMS0uNjEtLjI5Yy0uMjctLjItLjItLjEtLjMzLS40MS0uMjUtLjU3LS4zMS0xLS44NC0xLjQ3YTIuMjUgMi4yNSAwIDEwLTEuMjQgNCA0LjEyIDQuMTIgMCAwMDEtLjNjLjM5LS4xMi4zOS0uMS44LjA5YTEyNi43MiAxMjYuNzIgMCAwMDE1IDYuMTZjLjc3LjI1Ljc2IDAgLjc2LjY0YTExLjQ5IDExLjQ5IDAgMDEtLjE5IDEuNDVsLS42NCA0Ljc3ek0zNi4zIDMzYzAgLjI3LS4zOC4yNC0uNDguMDdzLjQ4LS40NS40OC0uMDd6TTU2IDQwbC4zLTIuMjFjMSAuNTcgMi43IDEuNDMgMy4xNSAyLjU3LS45OC40LTIuNTMtLjEzLTMuNDUtLjM2eiIgZmlsbD0iI2ZmZiIvPgogICAgPC9nPgo8L3N2Zz4K"
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "s3",
+          "effect": "Allow",
+          "action": "s3:*",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonS3FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "resource-groups": {
+      "service": {
+        "name": "AWS Resource Groups",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9Ii0zNy41IiB5MT0iMzcuNSIgeDI9IjExMi41IiB5Mj0iMzcuNSIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgtNDUgMzcuNTAyIDM3LjQ5NikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTQxYjIzIi8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVhNjM2ZSIvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8L2RlZnM+CiAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDY0djY0SDB6Ii8+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC43NSkgdHJhbnNsYXRlKDEwIDEwKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMi41NnB4Ij4KICAgICAgICA8cG9seWdvbiBwb2ludHM9IjU4Ljc4IDQ4IDU4Ljc4IDE2IDMyIDEuMjggNS4yMiAxNiA1LjIyIDQ4IDMyIDYyLjcyIDU4Ljc4IDQ4Ii8+CiAgICAgICAgPHBvbHlsaW5lIHBvaW50cz0iNS4yMiAxNiAzMiAzMiA1OC43OCAxNiIvPgogICAgICAgIDxsaW5lIHgxPSIzMiIgeTE9IjMyIiB4Mj0iMzIiIHkyPSI2Mi43MiIvPgogICAgPC9nPgo8L3N2Zz4="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:ListGroups",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:ListGroupResources",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:GetGroup",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:GetGroupQuery",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:DeleteGroup",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "resource-groups",
+          "effect": "Allow",
+          "action": "resource-groups:CreateGroup",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "application-autoscaling": {
+      "service": {
+        "name": "Application Auto Scaling",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMTgwLjI1IiB5MT0iNDMxLjEzIiB4Mj0iMTgwLjI1IiB5Mj0iMjgxLjEzIiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKDQ1IDQ5My41IDI0LjUwNCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2IwMDg0ZCIvPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY0ZjhiIi8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDBoNzV2NzVIMHoiLz4KICAgICAgICA8ZyBmaWxsPSIjZmZmIj4KICAgICAgICAgICAgPHBhdGggZD0iTTM2LjUgMTZ2OS40NWgyVjE2bDQuNjYgNC42NSAxLjQxLTEuNDEtNi4zNi02LjM3YTEgMSAwIDAwLTEuNDIgMGwtNi4zNiA2LjM3IDEuNDEgMS40MXpNMzguNSA1OXYtOS41N2gtMlY1OWwtNC42Ni00LjY2LTEuNDEgMS40MiA2LjM2IDYuMzZhMSAxIDAgMDAxLjQyIDBsNi4zNi02LjM2LTEuNDEtMS40MnpNMTguNzcgMzAuNDJsLTEuNDEgMS40MkwyMiAzNi40M2gtOS41djJoOS41OWwtNC43MyA0LjcyIDEuNDEgMS40MSA2LjM3LTYuMzZhMSAxIDAgMDAwLTEuNDF6TTYyLjUgMzYuNDNoLTkuNDVsNC41OS00LjU5LTEuNDItMS40Mi02LjM2IDYuMzdhMSAxIDAgMDAwIDEuNDFsNi4zNiA2LjM2IDEuNDItMS40MS00LjczLTQuNzJoOS41OXpNNDYgMzIuMDVsLTgtNC41YTEgMSAwIDAwLTEgMGwtOCA0LjVhMSAxIDAgMDAtLjUxLjg3djlhMSAxIDAgMDAuNTEuODdsOCA0LjQ5YS45NC45NCAwIDAwLjQ4LjEzLjkxLjkxIDAgMDAuNDgtLjEzbDgtNC40OWExIDEgMCAwMC41MS0uODd2LTlhMSAxIDAgMDAtLjQ3LS44N3ptLTguNS0yLjQ2bDYgMy4zOC02IDMuNDgtNi0zLjQ4em0tNyA1LjEybDYgMy40N3Y2LjVsLTYtMy4zN3ptOCAxMHYtNi41Mmw2LTMuNDh2Ni42eiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:DeleteScalingPolicy",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:DeregisterScalableTarget",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:DescribeScalableTargets",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:DescribeScalingActivities",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:DescribeScalingPolicies",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:PutScalingPolicy",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "application-autoscaling",
+          "effect": "Allow",
+          "action": "application-autoscaling:RegisterScalableTarget",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "xray": {
+      "service": {
+        "name": "AWS X-Ray",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE0NjMuNyIgeTE9IjU1OC4zMiIgeDI9Ii0xNDYzLjciIHkyPSI3MDguMzIiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTEzNSAtODM2LjUgMjQuNSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzJlMjdhZCIvPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNTI3ZmZmIi8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDBoNzV2NzVIMHoiLz4KICAgICAgICA8ZyBmaWxsPSIjZmZmIj4KICAgICAgICAgICAgPHBhdGggZD0iTTU0LjY0IDQ1LjQybC0uMjgtMmMyLjgtLjM5IDYuMTQtMiA2LjE0LTcuMzMgMC01LTMuOC02Ljg0LTctNy40OGExIDEgMCAwMS0uOC0uOTJjLS4yMi0zLjkxLTIuNDktNS4zLTQuMzctNS4zYTQuMDcgNC4wNyAwIDAwLTMuMjUgMS42NCAxIDEgMCAwMS0uOTUuMzkgMSAxIDAgMDEtLjc5LS42NCAxMy4yNyAxMy4yNyAwIDAwLTMuMTItNUExMS4xNiAxMS4xNiAwIDAwMjEgMjYuMzNhMTIuMDggMTIuMDggMCAwMC4wOCAxLjM1IDEgMSAwIDAxLS43NSAxLjA5QzE4LjE2IDI5LjMxIDE0LjUgMzEgMTQuNSAzNnYuNTVjLjE2IDMgMi43MyA1LjY5IDYuMjQgNi42MmwtLjUyIDEuOTRjLTQuMzMtMS4xNi03LjUxLTQuNjQtNy43Mi04LjQ2VjM2YTguOTIgOC45MiAwIDAxNi41My05di0uNzRhMTMuMTggMTMuMTggMCAwMTIyLjU5LTguODYgMTQuOTIgMTQuOTIgMCAwMTMgNC4yOSA2IDYgMCAwMTMuNzEtMS4yOGMyLjgxIDAgNS43NiAyIDYuMyA2LjQyIDUuMDggMS4yNiA3Ljg3IDQuNTMgNy44NyA5LjI4IDAgNS4yMi0yLjg3IDguNjEtNy44NiA5LjMxeiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMzcuNSAzMS41NGExNSAxNSAwIDEwMTUgMTUgMTUgMTUgMCAwMC0xNS0xNXptMCAyOGExMyAxMyAwIDExMTMtMTMgMTMgMTMgMCAwMS0xMyAxM3oiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTQ1LjUgNTEuNDl2MmgtMTZ2LTJoMnYtNS45NWgydjUuOTVoM3YtOC45NWgydjguOTVoM1YzOS41NGgydjExLjk1aDJ6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "xray",
+          "effect": "Allow",
+          "action": "xray:GetTraceSummaries",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "xray",
+          "effect": "Allow",
+          "action": "xray:BatchGetTraces",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "kinesis": {
+      "service": {
+        "name": "Amazon Kinesis",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE0Mi41MyIgeTE9Ijg1LjQ3IiB4Mj0iLTM2LjQ3IiB5Mj0iMTkxLjUzIiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKC05MCAtNzYuNSAyNC41KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNGQyN2E4Ii8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNhMTY2ZmYiLz4KICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8L2RlZnM+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZD0iTTAgMGg3NXY3NUgweiIvPgogICAgICAgIDxnIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8cGF0aCBkPSJNNjIuNTMgMzIuNXYyaC04LjgyYy0yMy4wOSAwLTQxLjE4LTkuMS00MS4xOC0yMC43NGE4Ljg4IDguODggMCAwMS4wOC0xLjI2aDJhNy42NCA3LjY0IDAgMDAtLjEgMS4yNmMwIDEwLjMzIDE3LjU4IDE4Ljc0IDM5LjIgMTguNzR6Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik02Mi41MyAzNi41djJINTAuMjljLTE5LjU3IDAtMzMuNjQgMy4xNy0zNy43NiA4LjQ5di0yLjY4YzQuMzctMy44MiAxMi40Ny01LjggMjAuMzgtNi44MS03LjkzLTEtMTYtMy0yMC4zOS02Ljczdi0yLjkyYzQuMDcgNS4zNCAxNy44NyA4LjU1IDM3LjEgOC42NXpNNjIuNTMgMjguNDl2MmgtNC4xNGMtMjAuMDggMC0zNC42NS02LjgtMzQuNjUtMTYuMTd2LTEuODNoMi4xMXYxLjgzYzAgOCAxNCAxNC4xNyAzMi41NSAxNC4xN3oiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTYyLjUzIDQwLjV2MmgtOC44MmMtMjEuNjMgMC0zOS4yMiA4LjQ0LTM5LjIyIDE4Ljc3YTguMzggOC4zOCAwIDAwLjA5IDEuMjNoLTJhOC4zOCA4LjM4IDAgMDEtLjA4LTEuMjNjMC0xMS42NSAxOC4xMS0yMC43NyA0MS4yMy0yMC43N3oiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTYyLjUzIDQ0LjV2MmgtNC4xNGMtMTguNTggMC0zMi41OSA2LTMyLjU5IDE0LjA3djEuOTNoLTJ2LTEuOTNjMC05LjMyIDE0LjU2LTE2LjA3IDM0LjYxLTE2LjA3eiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "kinesis",
+          "effect": "Allow",
+          "action": "kinesis:ListStreams",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "kinesis",
+          "effect": "Allow",
+          "action": "kinesis:DescribeStream",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "kinesis",
+          "effect": "Allow",
+          "action": "kinesis:DescribeStreamSummary",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "dynamodb": {
+      "service": {
+        "name": "Amazon DynamoDB",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE1LjUzIiB5MT0iOTAuNTMiIHgyPSI5MC41MyIgeTI9Ii0xNS41MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmUyN2FkIi8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1MjdmZmYiLz4KICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8L2RlZnM+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZD0iTTAgMGg3NXY3NUgweiIvPgogICAgICAgIDxnIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8cGF0aCBkPSJNNTAuMjUgNDAuNDhsLTYuNjEgNi42YTE2LjIzIDE2LjIzIDAgMDAzLjQyLTEuMzkgMi41OCAyLjU4IDAgMDExLjE5IDEuOGMwIDEuODMtMy44OCAzLjgyLTkuNjQgNC42M2E0Mi4yMyA0Mi4yMyAwIDAxLTUuMzYuMzhoLTFjLTguMDgtLjE5LTE0LTIuNzQtMTQtNWEyLjU4IDIuNTggMCAwMTEuMTktMS44YzMuMTQgMS43NSA4LjIzIDIuNzkgMTMuODEgMi43OWguMTFsLjU2LTJoLS42N2MtNS41IDAtMTAuNi0xLjA5LTEzLjMxLTIuODEtMS4wOC0uNzEtMS42OC0xLjQ4LTEuNjktMi4xNVYzNi45YzMuMDYgMi4zNCA5LjE2IDMuNTYgMTUgMy41Ni43OSAwIDEuNTggMCAyLjM1LS4wN2wuNTctMmMtMSAuMDctMS45My4xLTIuOTIuMS04LjU4IDAtMTUtMi42My0xNS01YTIuNTggMi41OCAwIDAxMS4xOS0xLjhjMi43NiAxLjU1IDcgMi41MiAxMS44MSAyLjc0bC4wNS0yYy00LjczLS4yMy05LTEuMjUtMTEuMzYtMi43Ni0xLjA3LS42OS0xLjY3LTEuNDctMS42OS0yLjE1VjIyLjljMy4wNiAyLjM0IDkuMTYgMy41NiAxNSAzLjU2aC4yMmwxLjA2LTJoLTEuMjhjLTguNTggMC0xNS0yLjYzLTE1LTVzNi40Mi01IDE1LTVhMzYgMzYgMCAwMTguNTggMWg1LjQ5Yy0zLTEuODMtOC4xOC0zLTE0LjA3LTMtOC4yNCAwLTE3IDIuNDQtMTcgN3Y4LjA1YTQuMDYgNC4wNiAwIDAwMS41MSAyLjk1IDQuMDcgNC4wNyAwIDAwLTEuNTEgM3Y4YTQuMDYgNC4wNiAwIDAwMS41MSAzIDQuMDcgNC4wNyAwIDAwLTEuNTEgM3Y4YTEuMjUgMS4yNSAwIDAwMCAuMjFjLjI3IDQuMzkgOC44NyA2Ljc1IDE3IDYuNzVzMTYuNzMtMi4zNiAxNy02Ljc3YS43NS43NSAwIDAwMC0uMjF2LThhNCA0IDAgMDAtMS41MS0zIDQuMDYgNC4wNiAwIDAwMS41MS0zem0tMiAxNWMwIDIuMzYtNi40MiA1LTE1IDVzLTE1LTIuNjEtMTUtNXYtNC42YzMuMDYgMi4zMiA5LjE2IDMuNTQgMTUgMy41NHMxMS45NC0xLjIyIDE1LTMuNTR6Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjIxLjI1IiBjeT0iMjcuNTIiIHI9IjEuMjUiLz4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMjEuMjUiIGN5PSI0MS41MiIgcj0iMS4yNSIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMS4yNSIgY3k9IjU1LjUyIiByPSIxLjI1Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNS43NSA1MS40OGExIDEgMCAwMS0uNS0uMTQgMSAxIDAgMDEtLjQ2LTEuMTVsNS42Mi0xOC43MWgtNS42NmExIDEgMCAwMS0uODktMS40OGw2LTEyYTEgMSAwIDAxLjg5LS41NWgxM2ExIDEgMCAwMTEgMS4zMWwtMi41NiA3LjY5aDUuNjFhMSAxIDAgMDEuNzIgMS42OWwtMjIgMjNhMSAxIDAgMDEtLjc3LjM0em0uNjItMjJoNS4zOGExIDEgMCAwMS44LjQgMSAxIDAgMDEuMTYuODhsLTQuODEgMTYgMTcuNTEtMTguM2gtNC42NmExIDEgMCAwMS0xLTEuMzJsMi41Ni03LjY4aC0xMXoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "dynamodb",
+          "effect": "Allow",
+          "action": "dynamodb:*",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "states": {
+      "service": {
+        "name": "AWS Step Functions",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE1LjUzIiB5MT0iOTAuNTMiIHgyPSI5MC41MyIgeTI9Ii0xNS41MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYjAwODRkIi8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZjRmOGIiLz4KICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8L2RlZnM+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZD0iTTAgMGg3NXY3NUgweiIvPgogICAgICAgIDxnIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8cGF0aCBkPSJNNTMuNSAzMS41di02YTEgMSAwIDAwLTEtMWgtMTR2LTIuMWE1IDUgMCAxMC0yIDB2Mi4xaC0xNGExIDEgMCAwMC0xIDF2NGgtOGExIDEgMCAwMC0xIDF2NWExIDEgMCAwMDEgMWg4djJoLThhMSAxIDAgMDAtMSAxdjVhMSAxIDAgMDAxIDFoOHY0YTEgMSAwIDAwMSAxaDE0djIuMWE1IDUgMCAxMDIgMHYtMi4xaDE0YTEgMSAwIDAwMS0xdi01aC0ydjRoLTI4di0zaDhhMSAxIDAgMDAxLTF2LTVhMSAxIDAgMDAtMS0xaC04di0yaDhhMSAxIDAgMDAxLTF2LTVhMSAxIDAgMDAtMS0xaC04di0zaDI4djV6bS0xMyAyNmEzIDMgMCAxMS0zLTMgMyAzIDAgMDEzIDN6bS0xMC0xN3YzaC0xNnYtM3ptMC05djNoLTE2di0zem00LTE0YTMgMyAwIDExMyAzIDMgMyAwIDAxLTMtM3oiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTYxLjUgMzMuNWgtMjBhMSAxIDAgMDAtMSAxdjdhMSAxIDAgMDAxIDFoMjBhMSAxIDAgMDAxLTF2LTdhMSAxIDAgMDAtMS0xem0tMSA3aC0xOHYtNWgxOHoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "states",
+          "effect": "Allow",
+          "action": "states:DescribeStateMachine",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "states",
+          "effect": "Allow",
+          "action": "states:ListStateMachines",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "kms": {
+      "service": {
+        "name": "AWS Key Management Service",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTI0MzYuNzYiIHkxPSI5NjEuMzciIHgyPSItMjQzNi43NiIgeTI9IjExMTEuMzciIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTEzNSAtMTQwNi41IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiZDA4MTYiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNTI1MiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNC41IDYyYTEgMSAwIDAxLS43NS0uMzRsLTMuNS00QTEgMSAwIDAxMjAgNTd2LTIuNThsLTIuNzEtMi43MWExIDEgMCAwMTAtMS40MmwyLjcxLTIuN3YtMS4xN2wtMi43MS0yLjcxYTEgMSAwIDAxMC0xLjQybDIuNzEtMi43di0yLjQyYTEyLjQ1IDEyLjQ1IDAgMDEtOC0xMS44MiAxMi41IDEyLjUgMCAwMTI1IC4xNSAxMi40MyAxMi40MyAwIDAxLTggMTEuNjZWNThhMSAxIDAgMDEtLjM1Ljc2bC0zLjUgM2ExIDEgMCAwMS0uNjUuMjR6TTIyIDU2LjYybDIuNiAzIDIuNC0yLjA4VjM2LjQ1YTEgMSAwIDAxLjctMSAxMC40OSAxMC40OSAwIDEwLTYuNDMgMCAxIDEgMCAwMS43MyAxVjQwYTEgMSAwIDAxLS4yOS43MUwxOS40MiA0M2wyLjI5IDIuMjlBMSAxIDAgMDEyMiA0NnYyYTEgMSAwIDAxLS4yOS43TDE5LjQyIDUxbDIuMjkgMi4yOUExIDEgMCAwMTIyIDU0em0yLjUtMzAuMTJBNC41IDQuNSAwIDExMjkgMjJhNC41MSA0LjUxIDAgMDEtNC41IDQuNXptMC03QTIuNSAyLjUgMCAxMDI3IDIyYTIuNSAyLjUgMCAwMC0yLjUtMi41ek02MS4wOSA1NUgzMXYtMmgzMFYzMUgzOXYtMmgyMi4wOUExLjkgMS45IDAgMDE2MyAzMC44N3YyMi4yNkExLjkgMS45IDAgMDE2MS4wOSA1NXoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTM0LjUgNDUuNWE0IDQgMCAxMTQtNCA0IDQgMCAwMS00IDR6bTAtNmEyIDIgMCAxMDIgMiAyIDIgMCAwMC0yLTJ6TTQ0LjUgNDUuNWE0IDQgMCAxMTQtNCA0IDQgMCAwMS00IDR6bTAtNmEyIDIgMCAxMDIgMiAyIDIgMCAwMC0yLTJ6TTMxIDQ4aDd2MmgtN3pNNDEgNDhoN3YyaC03ek01MSA0OGg3djJoLTd6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "kms",
+          "effect": "Allow",
+          "action": "kms:DescribeKey",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "kms",
+          "effect": "Allow",
+          "action": "kms:ListAliases",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "kms",
+          "effect": "Allow",
+          "action": "kms:ListAliases",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "lambda": {
+      "service": {
+        "name": "AWS Lambda",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE3ODguMDUiIHkxPSI2OTIuNjciIHgyPSItMTc4OC4wNSIgeTI9Ijg0Mi42NyIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgtMTM1IC0xMDI2LjUgMjQuNSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2M4NTExYiIvPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjkwIi8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDBoNzV2NzVIMHoiLz4KICAgICAgICA8ZyBmaWxsPSIjZmZmIj4KICAgICAgICAgICAgPHBhdGggZD0iTTYwLjUgNjIuNUg0OC4xOGExIDEgMCAwMS0uOS0uNTdMMjkuODYgMjUuNWgtNy4zN2ExIDEgMCAwMS0xLTF2LTExYTEgMSAwIDAxMS0xaDE1LjRhMSAxIDAgMDEuOS41N0w1Ni4xMyA0OS41aDQuMzdhMSAxIDAgMDExIDF2MTFhMSAxIDAgMDEtMSAxem0tMTEuNjktMkg1OS41di05aC00YTEgMSAwIDAxLS45LS41N0wzNy4yNiAxNC41SDIzLjV2OWg3YTEgMSAwIDAxLjkuNTd6Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yNy40OCA2Mi41aC0xM2ExIDEgMCAwMS0uODUtLjQ3IDEgMSAwIDAxLS4wNS0xbDEzLjYtMjguNDFhMSAxIDAgMDEuOS0uNTcgMSAxIDAgMDEuOS41NkwzNS40OSA0NmExIDEgMCAwMTAgLjg3bC03LjEgMTVhMSAxIDAgMDEtLjkxLjYzem0tMTEuNC0yaDEwLjc3bDYuNjMtMTQtNS4zOS0xMS4xNXoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:CreateFunction",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:ListFunctions",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:ListEventSourceMappings",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:CreateEventSourceMapping",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:DeleteEventSourceMapping",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:GetFunctionConfiguration",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:DeleteFunction",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "lambda",
+          "effect": "Allow",
+          "action": "lambda:*",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "sqs": {
+      "service": {
+        "name": "Amazon SQS",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iNTc1LjU4IiB5MT0iMjA3LjMyIiB4Mj0iNDI1Ljk5IiB5Mj0iMTk5LjQ4IiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKDEzNSAzMDMuNDk5IDI0LjUwMSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2IwMDg0ZCIvPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmY0ZjhiIi8+CiAgICAgICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgICAgPC9kZWZzPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjYSkiIGQ9Ik0wIDBoNzV2NzVIMHoiLz4KICAgICAgICA8ZyBmaWxsPSIjZmZmIj4KICAgICAgICAgICAgPHBhdGggZD0iTTIxLjY5IDIyYTIyLjE4IDIyLjE4IDAgMDEzNi42IDguMzZsMS44OS0uNjZhMjQuMTggMjQuMTggMCAwMC00NS42NSAwbDEuODkuNjZBMjEuODQgMjEuODQgMCAwMTIxLjY5IDIyek01MyA1M2EyMi4xOSAyMi4xOSAwIDAxLTMxLjM2IDAgMjIgMjIgMCAwMS01LjI3LTguNDJsLTEuODkuNjZhMjQuMTggMjQuMTggMCAwMDM5LjkzIDkuMTcgMjMuODkgMjMuODkgMCAwMDUuNzgtOS4yNWwtMS44OS0uNjRBMjIgMjIgMCAwMTUzIDUzek0yMC4xNSAzNy40NmE1Ljg0IDUuODQgMCAxMC0xLjcxIDQuMTIgNS43OCA1Ljc4IDAgMDAxLjcxLTQuMTJ6TTE3IDQwLjE3YTMuOTMgMy45MyAwIDAxLTUuNDEgMCAzLjgzIDMuODMgMCAwMTIuNy02LjUzQTMuODYgMy44NiAwIDAxMTcgMzQuNzZhMy44MyAzLjgzIDAgMDEwIDUuNDF6TTY0LjggMzMuNDFhNS44MiA1LjgyIDAgMTAwIDguMjMgNS44MiA1LjgyIDAgMDAwLTguMjN6bS0xLjQyIDYuODFhMy44MiAzLjgyIDAgMDEtNS40IDAgMy44MSAzLjgxIDAgMDEwLTUuNCAzLjgyIDMuODIgMCAxMTUuNCA1LjR6Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yOS4xOCA0Ny4xOGM0LjEtNC4xIDEyLjQ1LTQuMSAxNi41NSAwYTEgMSAwIDAwLjcuMjkgMSAxIDAgMDAxLTEgMSAxIDAgMDAtLjI5LS43MSAxMS42NiAxMS42NiAwIDAxLTMtOC4yNyAxMS42NyAxMS42NyAwIDAxMy04LjI3IDEgMSAwIDAwMC0xLjQxIDEgMSAwIDAwLTEuNDEgMGMtNC4xIDQuMDktMTIuNDUgNC4wOS0xNi41NSAwYTEgMSAwIDAwLTEuNDEgMCAxIDEgMCAwMDAgMS40MSAxMS42NyAxMS42NyAwIDAxMy4wNSA4LjI3IDExLjY2IDExLjY2IDAgMDEtMy4wNSA4LjI3IDEgMSAwIDAwLS4yOS43MSAxIDEgMCAwMC4yOS43MSAxIDEgMCAwMDEuNDEgMHptMi41OS0xNS4zNmExNS42IDE1LjYgMCAwMDExLjM3IDAgMTUuODYgMTUuODYgMCAwMDAgMTEuMzUgMTUuNiAxNS42IDAgMDAtMTEuMzcgMCAxNS44NiAxNS44NiAwIDAwMC0xMS4zNXoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTQ5LjYzIDQxLjU5TDUzIDM4LjE4YTEgMSAwIDAwMC0xLjQxbC0zLjM5LTMuMzktMS40MiAxLjQxIDEuNzEgMS43aC00LjUydjJoNC41MmwtMS42OSAxLjY5ek0yNS40NiA0MS42MWwzLjQxLTMuNDFhMSAxIDAgMDAwLTEuNDFsLTMuNDEtMy40MS0xLjQxIDEuNDEgMS43IDEuN2gtNC4zN3YyaDQuMzdsLTEuNyAxLjcxeiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "sqs",
+          "effect": "Allow",
+          "action": "sqs:*",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonSQSFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "iam": {
+      "service": {
+        "name": "Identity And Access Management",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTI0MTcuNDciIHkxPSItNDEuNTMiIHgyPSItMjUyMy41NCIgeTI9IjY0LjU0IiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKDE4MCAtMTIxNi41IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiZDA4MTYiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNTI1MiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik01OS43IDE5SDE1LjNhMi44MSAyLjgxIDAgMDAtMi44IDIuOHYzMS40YTIuODEgMi44MSAwIDAwMi44IDIuOGg0NC40YTIuODEgMi44MSAwIDAwMi44LTIuOFYyMS44YTIuODEgMi44MSAwIDAwLTIuOC0yLjh6bS44IDM0LjJhLjguOCAwIDAxLS44LjhIMTUuM2EuOC44IDAgMDEtLjgtLjhWMjEuOGEuOC44IDAgMDEuOC0uOGg0NC40YS44LjggMCAwMS44Ljh6Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik00MC41IDMyaDEwdjJoLTEwek01NC41IDMyaDJ2MmgtMnpNMzYuMjEgMzUuM2ExIDEgMCAwMC0uNzEtLjNoLTE0di01YTMuNjMgMy42MyAwIDAxMS41LTIuODVBNS43NCA1Ljc0IDAgMDEyNi41IDI2YTUuNTUgNS41NSAwIDAxMy42IDEuMjZBMy42NCAzLjY0IDAgMDEzMS41IDMwdjVoMnYtNS40YTUuMDcgNS4wNyAwIDAwLTIuMTEtNEE3LjkyIDcuOTIgMCAwMDI2LjUgMjRjLTMuODYgMC03IDIuNTEtNyA1LjU5VjM1aC0yYTEgMSAwIDAwLTEgMXYxNGExIDEgMCAwMDEgMWgxOGExIDEgMCAwMDEtMVYzNmExIDEgMCAwMC0uMjktLjd6TTM0LjUgNDBoLTN2MmgzdjJoLTN2MmgzdjNoLTE2VjM3aDE2eiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMjYuNSAzOC41N2EyLjkzIDIuOTMgMCAwMC0xIDUuNjhWNDdoMnYtMi43NWEyLjkzIDIuOTMgMCAwMC0xLTUuNjh6bTAgNC4yYTEuMjcgMS4yNyAwIDExMS4yNy0xLjI3IDEuMjcgMS4yNyAwIDAxLTEuMjcgMS4yN3pNNDAuNSAzN2g3djJoLTd6TTUxLjUgMzdoNXYyaC01ek00MC41IDQyaDEzdjJoLTEzeiIvPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetPolicy",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetPolicyVersion",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetRole",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "arn:aws:iam::*:role/aws-service-role/events.amazonaws.com/AWSServiceRoleForCloudWatchEvents*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:CreateServiceLinkedRole",
+          "source": {
+            "index": "1",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetRole",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:ListRoles",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:PassRole",
+          "source": {
+            "index": "2",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:CreateServiceLinkedRole",
+          "source": {
+            "index": "3",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetPolicy",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetPolicyVersion",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetRole",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:GetRolePolicy",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:ListAttachedRolePolicies",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:ListRolePolicies",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:ListRoles",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "iam",
+          "effect": "Allow",
+          "action": "iam:PassRole",
+          "source": {
+            "index": "1",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "ec2": {
+      "service": {
+        "name": "Amazon EC2",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMTEzMS4xIiB5MT0iLTUxNi40OCIgeDI9IjExMzEuMSIgeTI9Ii0zNjYuNDgiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTEzNSA2ODMuNDk4IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjODUxMWIiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y5MCIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik02MC40OSA0MC41aC01di0yaDV2LTI0aC0yNHY1aC0ydi01YTIgMiAwIDAxMi0yaDI0YTIgMiAwIDAxMiAydjI0YTIgMiAwIDAxLTIgMnpNMzguNDkgNjIuNWgtMjRhMiAyIDAgMDEtMi0ydi0yNGEyIDIgMCAwMTItMmg1djJoLTV2MjRoMjR2LTVoMnY1YTIgMiAwIDAxLTIgMnoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTUzLjUgMjguNXYtMmgtM2EyLjE4IDIuMTggMCAwMC0yLTJ2LTNoLTJ2M2gtM3YtM2gtMnYzaC0zdi0zaC0ydjNoLTN2LTNoLTJ2M2gtM3YtM2gtMnYzYTIuMTggMi4xOCAwIDAwLTIgMmgtM3YyaDN2M2gtM3YyaDN2M2gtM3YyaDN2M2gtM3YyaDN2M2gtM3YyaDNhMi4xOCAyLjE4IDAgMDAyIDJ2M2gydi0zaDN2M2gydi0zaDN2M2gydi0zaDN2M2gydi0zaDN2M2gydi0zYTIuMTggMi4xOCAwIDAwMi0yaDN2LTJoLTN2LTNoM3YtMmgtM3YtM2gzdi0yaC0zdi0zaDN2LTJoLTN2LTN6bS01IDE5LjgyYS4xOC4xOCAwIDAxLS4xOC4xOEgyNi42OGEuMTguMTggMCAwMS0uMTgtLjE4VjI2LjY4YS4xOC4xOCAwIDAxLjE4LS4xOGgyMS42NGEuMTguMTggMCAwMS4xOC4xOHoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeVpcs",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeSubnets",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeSecurityGroups",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeSecurityGroups",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeSubnets",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "ec2",
+          "effect": "Allow",
+          "action": "ec2:DescribeVpcs",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "datapipeline": {
+      "service": {
+        "name": "Data Pipeline",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE2NjIuNTQiIHkxPSIxNjA1LjQ3IiB4Mj0iLTE1NTYuNDciIHkyPSIxNzExLjU0IiBncmFkaWVudFRyYW5zZm9ybT0icm90YXRlKC05MCAtMTU5Ni41IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0ZDI3YTgiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ExNjZmZiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPHBhdGggZD0iTTU5LjEzIDI3LjgzaC0yLjI4YTMuMzcgMy4zNyAwIDAwLTMuMzYgMy4zNnYuMzFoLTEydi02aDEuNjFhMy41NCAzLjU0IDAgMDAyLjQ2IDEgMy44NSAzLjg1IDAgMDAzLjY5LTQgMy44NSAzLjg1IDAgMDAtMy42OS00IDMuNDYgMy40NiAwIDAwLTIuMzkgMWgtMS43MWE0LjMyIDQuMzIgMCAwMC00LTQuMzQgNC4zMiA0LjMyIDAgMDAtNCA0LjM0aC0xLjU0YTMuNDYgMy40NiAwIDAwLTIuMzktMSAzLjg1IDMuODUgMCAwMC0zLjY4IDQgMy44NSAzLjg1IDAgMDAzLjY4IDQgMy41IDMuNSAwIDAwMi40Ni0xaDEuNTF2NkgyMS40M3YtLjMzYTMuMzUgMy4zNSAwIDAwLTMuMzUtMy4zNGgtMi4yM2EzLjM1IDMuMzUgMCAwMC0zLjM1IDMuMzR2MjUuMzRhMy4zNSAzLjM1IDAgMDAzLjM1IDMuMzVoMi4yM2EzLjM1IDMuMzUgMCAwMDMuMzUtMy4zNWgzMi4wNmEzLjM3IDMuMzcgMCAwMDMuMzYgMy4zNmgyLjI4YTMuMzcgMy4zNyAwIDAwMy4zNy0zLjM3VjMxLjE5YTMuMzcgMy4zNyAwIDAwLTMuMzctMy4zNnpNMTkuNSA1Ni41MWExLjM2IDEuMzYgMCAwMS0xLjM3IDEuMzVoLTIuMjdhMS4zNSAxLjM1IDAgMDEtMS4zNi0xLjM1di0yaDV6bTAtNGgtNXYtMTdoNXptMC0xOWgtNXYtMi4zNGExLjM1IDEuMzUgMCAwMTEuMzYtMS4zNGgyLjI3YTEuMzUgMS4zNSAwIDAxMS4zNyAxLjM0em0xOC0xNi4zNmEyLjMyIDIuMzIgMCAwMTIgMi4zNmgtNGEyLjMyIDIuMzIgMCAwMTEuOTYtMi4zN3ptLTUuOTYgNi4zNWEuODcuODcgMCAwMC0uNzkuMzQgMS41NiAxLjU2IDAgMDEtMS4yMi42NiAxLjg3IDEuODcgMCAwMS0xLjY4LTIgMS44NyAxLjg3IDAgMDExLjY4LTIgMS41NCAxLjU0IDAgMDExLjE5LjYxIDEgMSAwIDAwLjc3LjM3aDEyLjA5YTEgMSAwIDAwLjc4LS4zNyAxLjU0IDEuNTQgMCAwMTEuMTgtLjYxIDEuODcgMS44NyAwIDAxMS42OSAyIDEuODcgMS44NyAwIDAxLTEuNjkgMiAxLjU2IDEuNTYgMCAwMS0xLjIyLS42Ni44Ny44NyAwIDAwLS43OS0uMzR6bTggMnY2aC00di02em0xNCAyOWgtMzJ2LTNoMzJ6bTAtNWgtMzJ2LTEyaDMyem0wLTE0aC0zMnYtMmgzMnptNyAyMWExLjM2IDEuMzYgMCAwMS0xLjM2IDEuMzZoLTIuMzNhMS4zNiAxLjM2IDAgMDEtMS4zNi0xLjM2di0yaDV6bTAtNGgtNXYtMTdoNXptMC0xOWgtNXYtMi4zMWExLjM2IDEuMzYgMCAwMTEuMzYtMS4zNmgyLjI5YTEuMzYgMS4zNiAwIDAxMS4zNiAxLjM2eiIgZmlsbD0iI2ZmZiIvPgogICAgPC9nPgo8L3N2Zz4K"
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:ActivatePipeline",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:CreatePipeline",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:DeletePipeline",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:DescribeObjects",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:DescribePipelines",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:GetPipelineDefinition",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:ListPipelines",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:PutPipelineDefinition",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "datapipeline",
+          "effect": "Allow",
+          "action": "datapipeline:QueryObjects",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "sns": {
+      "service": {
+        "name": "Amazon SNS",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iODA2Ljc1IiB5MT0iLTM4Mi4xMyIgeDI9IjgwNi43NSIgeTI9Ii0yMzIuMTMiIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTEzNSA0OTMuNDk4IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiMDA4NGQiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNGY4YiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik01NC41OCA1MC45MnYuNTNhMi4zMyAyLjMzIDAgMDEwLS41M3pNNDEuNDUgMzFsLS4xLjE5YS43Mi43MiAwIDAwLjA5LS4yeiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNMzIuNzggMjcuNTNjLS44OSAwLTguNzUtLjA3LTguNzUgMi45YTEuNDIgMS40MiAwIDAwLjEuNTUgMiAyIDAgMDAuMS4yMWw1LjQ0IDEydjYuMjFjMCAuNjMuMjYgMSAuODEgMWguMjZhOC43NiA4Ljc2IDAgMDAzLjQyLTEuNzdsLjY3LS40N2ExIDEgMCAwMC40Ny0uODR2LTQuMWw2LjA1LTEyYS43Mi43MiAwIDAwLjA5LS4yIDEuNDIgMS40MiAwIDAwLjEtLjU1YzAtMy4wMS03Ljg2LTIuOTQtOC43Ni0yLjk0em0wIDEuODRjMy41MyAwIDUuOC42MiA2LjU2IDEuMDYtLjc2LjQ0LTMgMS4wNi02LjU2IDEuMDZzLTUuNzktLjYyLTYuNTUtMS4wNmMuNzctLjQzIDMuMDItMS4wNiA2LjU1LTEuMDZ6bS43MyAxM1Y0Ni45M2wtLjM5LjI0Yy0uNTcuMzMtMS4wNy41Ni0xLjY0Ljg2VjQzYTEuMTQgMS4xNCAwIDAwLS4wOC0uNGwtNC4yNi05Ljc0YTI1LjkxIDI1LjkxIDAgMDA1LjY0LjYyIDI2LjM3IDI2LjM3IDAgMDA1LjQ4LS41OHoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTUxIDU1LjE3YTIyLjggMjIuOCAwIDAxLTEzLjQ2IDQuMzNjLTEwLjg4IDAtMjAuMTYtNy4wNy0yMi4zNC0xNy41YTQuNTEgNC41MSAwIDAwNC4xOC0zLjQ5aDUuMXYtMS44OUgxOS40QTQuNDkgNC40OSAwIDAwMTUuMjIgMzNhMjMgMjMgMCAwMTM1LjQtMTMuNDJMNTEuNzYgMThhMjUgMjUgMCAwMC0zOC42OCAxNS40NCA0LjQ4IDQuNDggMCAwMDAgOC4xM0EyNSAyNSAwIDAwMzcuNTQgNjEuNWEyNC43NyAyNC43NyAwIDAwMTQuNTgtNC43MXpNMTIuNSAzNy41YTIuNSAyLjUgMCAwMTIuMi0yLjVoLjNhMi41IDIuNSAwIDExLTIuNDkgMi41ek0xNC44NiAzNWgtLjE1eiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNNjAgNDJhNC41IDQuNSAwIDEwLTQuNC01LjQzaC01LjJWMjQuMmgyLjdhNC41IDQuNSAwIDEwLjA4LTEuNjFsLTMuNjgtLjA1YS44My44MyAwIDAwLTEgLjg4djEzLjEyaC03LjY5djEuODVoNy42OXYxMy4wOGExIDEgMCAwMDEgMWgzLjE0YTQuNSA0LjUgMCAxMDAtMS43N2gtMi4xOGwtLjA1LTEyLjMyaDUuMTlBNC41MSA0LjUxIDAgMDA2MCA0MnptMC03YTIuNSAyLjUgMCAxMS0yLjUgMi41QTIuNSAyLjUgMCAwMTYwIDM1em0tMi41LTEzLjkxYTIuNDkgMi40OSAwIDExLTIuNSAyLjQ3IDIuNDkgMi40OSAwIDAxMi41MS0yLjQ5ek01NyA0OWEyLjUgMi41IDAgMTEtMi40NyAyLjgxdi0uM2EyLjMzIDIuMzMgMCAwMS4wNi0uNTNBMi41MSAyLjUxIDAgMDE1NyA0OXoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:*",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:CreateTopic",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:DeleteTopic",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:ListSubscriptions",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:ListSubscriptionsByTopic",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:ListTopics",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:Subscribe",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:Unsubscribe",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "sns",
+          "effect": "Allow",
+          "action": "sns:SetTopicAttributes",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "cloudwatch": {
+      "service": {
+        "name": "Amazon CloudWatch",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iNjE3LjQ3IiB5MT0iLTY3NC41MyIgeDI9IjcyMy41MyIgeTI9Ii01NjguNDciIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTkwIDY4My41IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiMDA4NGQiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNGY4YiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMS41IDQ4aC0xMWE2LjExIDYuMTEgMCAwMS0zLjE0LS45NCAxMC4xOCAxMC4xOCAwIDAxLTQuODYtOC44OUE5LjA5IDkuMDkgMCAwMTE5IDI5di0uNzhhMTMuNyAxMy43IDAgMDE3LjgyLTEyLjA4IDEzLjEyIDEzLjEyIDAgMDExNC43OSAyLjkzIDE1LjA1IDE1LjA1IDAgMDEzIDQuNCA1Ljg2IDUuODYgMCAwMTMuNjgtMS4zYzIuNzIgMCA1Ljc4IDIuMDYgNi4zNCA2LjU4IDIuNTcuNjEgNy44NSAyLjcxIDcuODUgOS41MWE5IDkgMCAwMS00LjczIDguMzlsLTEtMS43NWE3LjA4IDcuMDggMCAwMDMuNy02LjY0YzAtNS44OC00Ljg3LTcuMzQtNy03LjdhMSAxIDAgMDEtLjY1LS40MiAxIDEgMCAwMS0uMTctLjcyYy0uMjktMy42My0yLjQxLTUuMjUtNC40LTUuMjVBNCA0IDAgMDA0NSAyNS44NmExIDEgMCAwMS0uOTUuNCAxIDEgMCAwMS0uNzktLjY2IDEzLjYgMTMuNiAwIDAwLTMuMTQtNS4xMkExMS4xNiAxMS4xNiAwIDAwMjcuNjEgMTggMTEuNzYgMTEuNzYgMCAwMDIxIDI4LjJhMTIuMzQgMTIuMzQgMCAwMC4wOCAxLjM4IDEgMSAwIDAxLS44MSAxLjExIDcuMjQgNy4yNCAwIDAwLTUuNzggNy40OCA4LjEzIDguMTMgMCAwMDMuOTMgNy4yIDQgNCAwIDAwMi4wOC42M2gxMXoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTYxLjM5IDU0bC03LjEtNy4xM0ExMC42MSAxMC42MSAwIDEwNDkuNDMgNTJsNyA3YTMuNTIgMy41MiAwIDAwMi41IDEgMy40OCAzLjQ4IDAgMDAyLjQ5LTEgMy41MiAzLjUyIDAgMDAtLjAzLTV6TTQ0LjYgNTEuMTdhOC41OSA4LjU5IDAgMTE4LjU5LTguNTkgOC41OSA4LjU5IDAgMDEtOC41OSA4LjU5ek02MCA1Ny41NWExLjU3IDEuNTcgMCAwMS0yLjE2IDBsLTYuNjYtNi42NmExMC40OCAxMC40OCAwIDAwMi4xMi0yLjI0bDYuNyA2Ljc0YTEuNTQgMS41NCAwIDAxMCAyLjE2eiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNNDcuMzUgMzcuOTNsLTEuMTkgMS42MWEzLjM3IDMuMzcgMCAwMC01LjM0IDMuMkEzLjMgMy4zIDAgMDA0Mi4xNSA0NUw0MSA0Ni41NmE1LjM3IDUuMzcgMCAwMTYuMzktOC42M3oiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:*",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:DeleteAlarms",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:DescribeAlarmHistory",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:DescribeAlarms",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:DescribeAlarmsForMetric",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:GetMetricStatistics",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:ListMetrics",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:PutMetricAlarm",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:GetMetricData",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "arn:aws:cloudwatch:*:*:insight-rule/DynamoDBContributorInsights*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:GetInsightRuleReport",
+          "source": {
+            "index": "1",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:ListMetrics",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudwatch",
+          "effect": "Allow",
+          "action": "cloudwatch:GetMetricData",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "dax": {
+      "service": {
+        "name": "Amazon DynamoDB Accelerator (DAX)",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iLTE1LjUzIiB5MT0iOTAuNTMiIHgyPSI5MC41MyIgeTI9Ii0xNS41MyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMmUyN2FkIi8+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1MjdmZmYiLz4KICAgICAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgICA8L2RlZnM+CiAgICAgICAgPHBhdGggZmlsbD0idXJsKCNhKSIgZD0iTTAgMGg3NXY3NUgweiIvPgogICAgICAgIDxnIGZpbGw9IiNmZmYiPgogICAgICAgICAgICA8cGF0aCBkPSJNNTAuMjUgNDAuNDhsLTYuNjEgNi42YTE2LjIzIDE2LjIzIDAgMDAzLjQyLTEuMzkgMi41OCAyLjU4IDAgMDExLjE5IDEuOGMwIDEuODMtMy44OCAzLjgyLTkuNjQgNC42M2E0Mi4yMyA0Mi4yMyAwIDAxLTUuMzYuMzhoLTFjLTguMDgtLjE5LTE0LTIuNzQtMTQtNWEyLjU4IDIuNTggMCAwMTEuMTktMS44YzMuMTQgMS43NSA4LjIzIDIuNzkgMTMuODEgMi43OWguMTFsLjU2LTJoLS42N2MtNS41IDAtMTAuNi0xLjA5LTEzLjMxLTIuODEtMS4wOC0uNzEtMS42OC0xLjQ4LTEuNjktMi4xNVYzNi45YzMuMDYgMi4zNCA5LjE2IDMuNTYgMTUgMy41Ni43OSAwIDEuNTggMCAyLjM1LS4wN2wuNTctMmMtMSAuMDctMS45My4xLTIuOTIuMS04LjU4IDAtMTUtMi42My0xNS01YTIuNTggMi41OCAwIDAxMS4xOS0xLjhjMi43NiAxLjU1IDcgMi41MiAxMS44MSAyLjc0bC4wNS0yYy00LjczLS4yMy05LTEuMjUtMTEuMzYtMi43Ni0xLjA3LS42OS0xLjY3LTEuNDctMS42OS0yLjE1VjIyLjljMy4wNiAyLjM0IDkuMTYgMy41NiAxNSAzLjU2aC4yMmwxLjA2LTJoLTEuMjhjLTguNTggMC0xNS0yLjYzLTE1LTVzNi40Mi01IDE1LTVhMzYgMzYgMCAwMTguNTggMWg1LjQ5Yy0zLTEuODMtOC4xOC0zLTE0LjA3LTMtOC4yNCAwLTE3IDIuNDQtMTcgN3Y4LjA1YTQuMDYgNC4wNiAwIDAwMS41MSAyLjk1IDQuMDcgNC4wNyAwIDAwLTEuNTEgM3Y4YTQuMDYgNC4wNiAwIDAwMS41MSAzIDQuMDcgNC4wNyAwIDAwLTEuNTEgM3Y4YTEuMjUgMS4yNSAwIDAwMCAuMjFjLjI3IDQuMzkgOC44NyA2Ljc1IDE3IDYuNzVzMTYuNzMtMi4zNiAxNy02Ljc3YS43NS43NSAwIDAwMC0uMjF2LThhNCA0IDAgMDAtMS41MS0zIDQuMDYgNC4wNiAwIDAwMS41MS0zem0tMiAxNWMwIDIuMzYtNi40MiA1LTE1IDVzLTE1LTIuNjEtMTUtNXYtNC42YzMuMDYgMi4zMiA5LjE2IDMuNTQgMTUgMy41NHMxMS45NC0xLjIyIDE1LTMuNTR6Ii8+CiAgICAgICAgICAgIDxjaXJjbGUgY3g9IjIxLjI1IiBjeT0iMjcuNTIiIHI9IjEuMjUiLz4KICAgICAgICAgICAgPGNpcmNsZSBjeD0iMjEuMjUiIGN5PSI0MS41MiIgcj0iMS4yNSIvPgogICAgICAgICAgICA8Y2lyY2xlIGN4PSIyMS4yNSIgY3k9IjU1LjUyIiByPSIxLjI1Ii8+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNS43NSA1MS40OGExIDEgMCAwMS0uNS0uMTQgMSAxIDAgMDEtLjQ2LTEuMTVsNS42Mi0xOC43MWgtNS42NmExIDEgMCAwMS0uODktMS40OGw2LTEyYTEgMSAwIDAxLjg5LS41NWgxM2ExIDEgMCAwMTEgMS4zMWwtMi41NiA3LjY5aDUuNjFhMSAxIDAgMDEuNzIgMS42OWwtMjIgMjNhMSAxIDAgMDEtLjc3LjM0em0uNjItMjJoNS4zOGExIDEgMCAwMS44LjQgMSAxIDAgMDEuMTYuODhsLTQuODEgMTYgMTcuNTEtMTguM2gtNC42NmExIDEgMCAwMS0xLTEuMzJsMi41Ni03LjY4aC0xMXoiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "dax",
+          "effect": "Allow",
+          "action": "dax:*",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "autoscaling": {
+      "service": {
+        "name": "Amazon EC2 Auto Scaling",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iODYuODciIHkxPSItMjg4Ljc1IiB4Mj0iMjM2Ljg3IiB5Mj0iLTI4OC43NSIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgtNDUgNDkzLjQ5NyAyNC40OTcpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjODUxMWIiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y5MCIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNi41IDE1LjkxdjkuNThoMnYtOS41OGw0LjY2IDQuNjYgMS40MS0xLjQyLTYuMzYtNi4zNmExIDEgMCAwMC0xLjQyIDBsLTYuMzYgNi4zNiAxLjQxIDEuNDJ6TTM4LjUgNTkuMDh2LTkuNTloLTJ2OS41OWwtNC42Ni00LjY2LTEuNDEgMS40MiA2LjM2IDYuMzZhMSAxIDAgMDAxLjQyIDBsNi4zNi02LjM2LTEuNDEtMS40MnpNNDQuNSAyOS42NXYtMi4xNmgtMnYyaC0ydi0yaC0ydjJoLTJ2LTJoLTJ2MmgtMnYtMmgtMnYyLjE2YTEuNyAxLjcgMCAwMC0uODUuODRIMjcuNXYyaDJ2MmgtMnYyaDJ2MmgtMnYyaDJ2MmgtMnYyaDIuMTVhMS42OCAxLjY4IDAgMDAuODUuODV2Mi4xNWgydi0yaDJ2Mmgydi0yaDJ2Mmgydi0yaDJ2Mmgydi0yLjE1YTEuNjggMS42OCAwIDAwLjg1LS44NWgyLjE1di0yaC0ydi0yaDJ2LTJoLTJ2LTJoMnYtMmgtMnYtMmgydi0yaC0yLjE1YTEuNyAxLjcgMCAwMC0uODUtLjg0em0tMSAxMy44NGgtMTJ2LTEyaDEyek0xOC43NyAzMC40OWwtMS40MSAxLjQyTDIyIDM2LjQ5aC05LjV2Mmg5LjU5bC00LjczIDQuNzMgMS40MSAxLjQxIDYuMzctNi4zNmExIDEgMCAwMC4yOS0uNzEgMSAxIDAgMDAtLjI5LS43ek02Mi41IDM2LjQ5aC05LjQ1bDQuNTktNC41OC0xLjQxLTEuNDItNi4zNyA2LjM3YTEgMSAwIDAwLS4yOS43IDEgMSAwIDAwLjI5LjcxbDYuMzcgNi4zNiAxLjQxLTEuNDEtNC43My00LjczaDkuNTl6Ii8+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K"
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "autoscaling",
+          "effect": "Allow",
+          "action": "autoscaling:Describe*",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "tag": {
+      "service": {
+        "name": "Amazon Resource Group Tagging API",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9Ii0zNy41IiB5MT0iMzcuNSIgeDI9IjExMi41IiB5Mj0iMzcuNSIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgtNDUgMzcuNTAyIDM3LjQ5NikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTQxYjIzIi8+CiAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVhNjM2ZSIvPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8L2RlZnM+CiAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDY0djY0SDB6Ii8+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC43NSkgdHJhbnNsYXRlKDEwIDEwKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMi41NnB4Ij4KICAgICAgICA8cG9seWdvbiBwb2ludHM9IjU4Ljc4IDQ4IDU4Ljc4IDE2IDMyIDEuMjggNS4yMiAxNiA1LjIyIDQ4IDMyIDYyLjcyIDU4Ljc4IDQ4Ii8+CiAgICAgICAgPHBvbHlsaW5lIHBvaW50cz0iNS4yMiAxNiAzMiAzMiA1OC43OCAxNiIvPgogICAgICAgIDxsaW5lIHgxPSIzMiIgeTE9IjMyIiB4Mj0iMzIiIHkyPSI2Mi43MiIvPgogICAgPC9nPgo8L3N2Zz4="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "tag",
+          "effect": "Allow",
+          "action": "tag:GetResources",
+          "source": {
+            "index": "0",
+            "policyName": "AmazonDynamoDBFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "tag",
+          "effect": "Allow",
+          "action": "tag:GetResources",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "logs": {
+      "service": {
+        "name": "Amazon CloudWatch Logs",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iNjE3LjQ3IiB5MT0iLTY3NC41MyIgeDI9IjcyMy41MyIgeTI9Ii01NjguNDciIGdyYWRpZW50VHJhbnNmb3JtPSJyb3RhdGUoLTkwIDY4My41IDI0LjUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiMDA4NGQiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNGY4YiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPGcgZmlsbD0iI2ZmZiI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0zMS41IDQ4aC0xMWE2LjExIDYuMTEgMCAwMS0zLjE0LS45NCAxMC4xOCAxMC4xOCAwIDAxLTQuODYtOC44OUE5LjA5IDkuMDkgMCAwMTE5IDI5di0uNzhhMTMuNyAxMy43IDAgMDE3LjgyLTEyLjA4IDEzLjEyIDEzLjEyIDAgMDExNC43OSAyLjkzIDE1LjA1IDE1LjA1IDAgMDEzIDQuNCA1Ljg2IDUuODYgMCAwMTMuNjgtMS4zYzIuNzIgMCA1Ljc4IDIuMDYgNi4zNCA2LjU4IDIuNTcuNjEgNy44NSAyLjcxIDcuODUgOS41MWE5IDkgMCAwMS00LjczIDguMzlsLTEtMS43NWE3LjA4IDcuMDggMCAwMDMuNy02LjY0YzAtNS44OC00Ljg3LTcuMzQtNy03LjdhMSAxIDAgMDEtLjY1LS40MiAxIDEgMCAwMS0uMTctLjcyYy0uMjktMy42My0yLjQxLTUuMjUtNC40LTUuMjVBNCA0IDAgMDA0NSAyNS44NmExIDEgMCAwMS0uOTUuNCAxIDEgMCAwMS0uNzktLjY2IDEzLjYgMTMuNiAwIDAwLTMuMTQtNS4xMkExMS4xNiAxMS4xNiAwIDAwMjcuNjEgMTggMTEuNzYgMTEuNzYgMCAwMDIxIDI4LjJhMTIuMzQgMTIuMzQgMCAwMC4wOCAxLjM4IDEgMSAwIDAxLS44MSAxLjExIDcuMjQgNy4yNCAwIDAwLTUuNzggNy40OCA4LjEzIDguMTMgMCAwMDMuOTMgNy4yIDQgNCAwIDAwMi4wOC42M2gxMXoiLz4KICAgICAgICAgICAgPHBhdGggZD0iTTYxLjM5IDU0bC03LjEtNy4xM0ExMC42MSAxMC42MSAwIDEwNDkuNDMgNTJsNyA3YTMuNTIgMy41MiAwIDAwMi41IDEgMy40OCAzLjQ4IDAgMDAyLjQ5LTEgMy41MiAzLjUyIDAgMDAtLjAzLTV6TTQ0LjYgNTEuMTdhOC41OSA4LjU5IDAgMTE4LjU5LTguNTkgOC41OSA4LjU5IDAgMDEtOC41OSA4LjU5ek02MCA1Ny41NWExLjU3IDEuNTcgMCAwMS0yLjE2IDBsLTYuNjYtNi42NmExMC40OCAxMC40OCAwIDAwMi4xMi0yLjI0bDYuNyA2Ljc0YTEuNTQgMS41NCAwIDAxMCAyLjE2eiIvPgogICAgICAgICAgICA8cGF0aCBkPSJNNDcuMzUgMzcuOTNsLTEuMTkgMS42MWEzLjM3IDMuMzcgMCAwMC01LjM0IDMuMkEzLjMgMy4zIDAgMDA0Mi4xNSA0NUw0MSA0Ni41NmE1LjM3IDUuMzcgMCAwMTYuMzktOC42M3oiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "logs",
+          "effect": "Allow",
+          "action": "logs:*",
+          "source": {
+            "index": "0",
+            "policyName": "CloudWatchFullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "logs",
+          "effect": "Allow",
+          "action": "logs:DescribeLogGroups",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*",
+          "service": "logs",
+          "effect": "Allow",
+          "action": "logs:DescribeLogStreams",
+          "source": {
+            "index": "2",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*",
+          "service": "logs",
+          "effect": "Allow",
+          "action": "logs:GetLogEvents",
+          "source": {
+            "index": "2",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "arn:aws:logs:*:*:log-group:/aws/lambda/*",
+          "service": "logs",
+          "effect": "Allow",
+          "action": "logs:FilterLogEvents",
+          "source": {
+            "index": "2",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    },
+    "cloudformation": {
+      "service": {
+        "name": "AWS CloudFormation",
+        "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgICA8ZyB0cmFuc2Zvcm09InNjYWxlKC44NTMpIj4KICAgICAgICA8ZGVmcz4KICAgICAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJhIiB4MT0iMTI0LjYiIHkxPSIyOTYuNzgiIHgyPSIxMjQuNiIgeTI9IjE0Ni43OCIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSg0NSAzMDMuNSAyNC41MDQpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiMDA4NGQiLz4KICAgICAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmNGY4YiIvPgogICAgICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgICAgIDwvZGVmcz4KICAgICAgICA8cGF0aCBmaWxsPSJ1cmwoI2EpIiBkPSJNMCAwaDc1djc1SDB6Ii8+CiAgICAgICAgPHBhdGggZD0iTTYyLjUgMzVhOCA4IDAgMDEtNy41IDguMTJINDAuNXYtMkg1NWMuMTQgMCA1LjU1LS42IDUuNTUtNi4xMyAwLTQuNjQtMy44OC01LjgtNS41NC02LjA5YTEgMSAwIDAxLS44Mi0xLjE0YzAtMi0uODQtMy40My0yLjMxLTMuOTFBMy4yMiAzLjIyIDAgMDA0OC4yMyAyNWExIDEgMCAwMS0xIC4zOSAxIDEgMCAwMS0uNzktLjY1QTEwLjg0IDEwLjg0IDAgMDA0NCAyMC42NWE4Ljk0IDguOTQgMCAwMC0xMC4xLTIgOSA5IDAgMDAtNC40IDQuNDdoLTIuMmExMS4xNiAxMS4xNiAwIDAxNS43OS02LjMxIDEwLjk0IDEwLjk0IDAgMDExMi4yOSAyLjQyIDEyLjMzIDEyLjMzIDAgMDEyLjQgMy40NCA1LjIgNS4yIDAgMDE0LjY3LS42NyA1LjU2IDUuNTYgMCAwMTMuNjYgNS4xNWMzLjIyLjc3IDYuMzkgMy4yIDYuMzkgNy44NXptLTI4LS44N3YtN2gtMjB2MzBoMjB2LTE3aDJ2MThhMSAxIDAgMDEtMSAxaC0yMmExIDEgMCAwMS0xLTF2LTMyYTEgMSAwIDAxMS0xaDIyYTEgMSAwIDAxMSAxdjh6bTEzIDJoLTMwdjJoMzB6bS0yMi01aC04djJoOHptMyAxMGgtMTF2MmgxMXptLTQuMDkgNWgtNi44N3YyaDYuODd6bTcuMDkgMGgtNXYyaDV6bTIyLTEwaC00djJoNHoiIGZpbGw9IiNmZmYiLz4KICAgIDwvZz4KPC9zdmc+Cg=="
+      },
+      "statements": [
+        {
+          "resource": "*",
+          "service": "cloudformation",
+          "effect": "Allow",
+          "action": "cloudformation:DescribeStacks",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        },
+        {
+          "resource": "*",
+          "service": "cloudformation",
+          "effect": "Allow",
+          "action": "cloudformation:ListStackResources",
+          "source": {
+            "index": "0",
+            "policyName": "AWSLambda_FullAccess",
+            "policyType": "managed"
+          }
+        }
+      ]
+    }
+  },
+  "trustedEntities": [
+    "lambda.amazonaws.com"
+  ]
+}
