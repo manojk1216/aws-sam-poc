@@ -148,21 +148,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 				{
 				  "Id": "s3eventtriggerslambda",
 				  "LambdaFunctionArn": "arn:aws:lambda:ap-south-1:<<ACCOUNT_NUMBER>>:function:lambda_s3_sqs_dynamo_function",
-				  "Events": ["s3:ObjectCreated:*"],
-				  "Filter": {
-					"Key": {
-					  "FilterRules": [
-						{
-						  "Name": "suffix",
-						  "Value": "thesuffix"
-						},
-						{
-						  "Name": "prefix",
-						  "Value": "theprefix"
-						}
-					  ]
-					}
-				  }
+				  "Events": ["s3:ObjectCreated:*"]
 				}
 			  ]
 			}
