@@ -161,4 +161,6 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 		aws s3 sync "C:\Users\acer\test" s3://aws-sam-poc-999
 
 ## Class Diagram of Implmentation
-	![GitHub Logo](/images/ClassDiagram.png)
+	![ClassDiagram](/images/ClassDiagram.png)
+	![ClassDiagram](/ClassDiagram.png)
+	![ClassDiagram](images/ClassDiagram.png)
