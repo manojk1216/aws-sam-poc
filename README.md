@@ -1,6 +1,6 @@
 # AWS SAM POC - Lambda, SQS, Dynamodb
 
-###Recording of POC
+
 [Play the AWS SAM poc recording](https://github.com/manojk1216/aws-sam-poc/blob/main/images/AWS_SAM_POC.mp4)
 
 ## Table Contents
@@ -30,13 +30,13 @@
 
 ## Open command prompt and compile the project and create package with following maven command
 
-	C:\Users\acer>mvn clean install package
+### C:\Users\acer>mvn clean install package
 	
 	Note: This command creates  the executable jar file in the 'target' directory
 	
 ## Now configure the aws-cli to configure and execute the application from command line
 	
-	C:\Users\acer>aws configure
+### C:\Users\acer>aws configure
 	
 	AWS Access Key ID [None]: AKIAWP6EFKUCMCK5UP4X
 	AWS Secret Access Key [None]: +f2lOo7
@@ -133,7 +133,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 
 ### 8.1 Set permissions to lambda function to set S3 as triggering event
 
-			#### C:\Users\acer>aws lambda add-permission --function-name function:lambda_s3_sqs_dynamo_function --profile default  --statement-id AllowToBeInvoked --action "lambda:InvokeFunction" --principal s3.amazonaws.com --source-arn "arn:aws:s3:::aws-sam-poc-999
+#### C:\Users\acer>aws lambda add-permission --function-name function:lambda_s3_sqs_dynamo_function --profile default  --statement-id AllowToBeInvoked --action "lambda:InvokeFunction" --principal s3.amazonaws.com --source-arn "arn:aws:s3:::aws-sam-poc-999
 			
 			output:
 				"  --source-account <<ACCOUNT_NUMBER>>
@@ -143,7 +143,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 
 ### 8.2 Add S3 trigger event to the lambda function
 
-			#### C:\Users\acer>aws s3api put-bucket-notification-configuration --bucket aws-sam-poc-999 --notification-configuration file://trigger.json
+#### C:\Users\acer>aws s3api put-bucket-notification-configuration --bucket aws-sam-poc-999 --notification-configuration file://trigger.json
 
 
 			file content of  ->  trigger.json 
@@ -161,7 +161,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 
 ## Upload the input test file to S3 bucket
 	
-		aws s3 sync "C:\Users\acer\test" s3://aws-sam-poc-999
+### aws s3 sync "C:\Users\acer\test" s3://aws-sam-poc-999
 
 ## Class Diagram of Implmentation
 ![ClassDiagram](https://github.com/manojk1216/aws-sam-poc/blob/main/images/ClassDiagram.png)
