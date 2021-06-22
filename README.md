@@ -23,7 +23,7 @@
  
  ### Copy the Role ARN, which will be used at the time of Lambda function creation
 		
-		#### Ex: arn:aws:iam::<<ACCOUNT_NUMBER>>:role/service-role/sqs_lambda_dynamo-role-h6a1z6y2
+#### Ex: arn:aws:iam::<<ACCOUNT_NUMBER>>:role/service-role/sqs_lambda_dynamo-role-h6a1z6y2
 
 ## Open command prompt and compile the project and create package with following maven command
 
@@ -44,7 +44,7 @@
 
 ## Create S3 bucket, with default permissions
 
-	#### C:\Users\acer>aws s3 mb s3://aws-sam-poc-999
+#### C:\Users\acer>aws s3 mb s3://aws-sam-poc-999
 	
 	output:
 		make_bucket: aws-sam-poc-999 
@@ -55,7 +55,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 ## Create Dynamodb table with primary partition key as "MessageId"
 
 
-	#### C:\Users\acer>aws dynamodb create-table --table-name Sequence --attribute-definitions AttributeName=MessageId,AttributeType=S --key-schema AttributeName=MessageId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
+#### C:\Users\acer>aws dynamodb create-table --table-name Sequence --attribute-definitions AttributeName=MessageId,AttributeType=S --key-schema AttributeName=MessageId,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 	
 	output:
 		{
@@ -91,7 +91,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 
 ## Create SQS Queue with default properties
 
-	#### C:\Users\acer>aws sqs create-queue --queue-name CombinationProcessQueue
+#### C:\Users\acer>aws sqs create-queue --queue-name CombinationProcessQueue
 	
 	output:
 		{
@@ -102,7 +102,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 ## Create a lambda function to S3 Event will be triggered upon uploading a input file in S3 Bucket which inturn send processed message to DynamoDB through SQS
 
 
-	#### C:\Users\acer>aws lambda create-function --function-name lambda_s3_sqs_dynamo_function --zip-file fileb://sam-poc.zip --handler com.aws.sam.poc.AWSLambdaS3FunctionHandler::handleRequest --runtime java8 --role arn:aws:iam::<<ACCOUNT_NUMBER>>:role/service-role/sqs_lambda_dynamo-role-h6a1z6y2
+#### C:\Users\acer>aws lambda create-function --function-name lambda_s3_sqs_dynamo_function --zip-file fileb://sam-poc.zip --handler com.aws.sam.poc.AWSLambdaS3FunctionHandler::handleRequest --runtime java8 --role arn:aws:iam::<<ACCOUNT_NUMBER>>:role/service-role/sqs_lambda_dynamo-role-h6a1z6y2
 
 	output:
 		{
@@ -128,7 +128,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 		}
 
 
-		### 8.1 Set permissions to lambda function to set S3 as triggering event
+### 8.1 Set permissions to lambda function to set S3 as triggering event
 
 			#### C:\Users\acer>aws lambda add-permission --function-name function:lambda_s3_sqs_dynamo_function --profile default  --statement-id AllowToBeInvoked --action "lambda:InvokeFunction" --principal s3.amazonaws.com --source-arn "arn:aws:s3:::aws-sam-poc-999
 			
@@ -138,7 +138,7 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 					"Statement": "{\"Sid\":\"AllowToBeInvoked\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"s3.amazonaws.com\"},\"Action\":\"lambda:InvokeFunction\",\"Resource\":\"arn:aws:lambda:ap-south-1:<<ACCOUNT_NUMBER>>:function:lambda_s3_sqs_dynamo_function\",\"Condition\":{\"StringEquals\":{\"AWS:SourceAccount\":\"<<ACCOUNT_NUMBER>>\"},\"ArnLike\":{\"AWS:SourceArn\":\"arn:aws:s3:::aws-sam-poc-999\"}}}"
 				}
 
-		### 8.2 Add S3 trigger event to the lambda function
+### 8.2 Add S3 trigger event to the lambda function
 
 			#### C:\Users\acer>aws s3api put-bucket-notification-configuration --bucket aws-sam-poc-999 --notification-configuration file://trigger.json
 
@@ -162,3 +162,6 @@ NOTE: S3 Bucket will be created at global level so no need to specify the region
 
 ## Class Diagram of Implmentation
 ![ClassDiagram](https://github.com/manojk1216/aws-sam-poc/blob/main/images/ClassDiagram.png)
+
+## Sequence Diagram
+![Squence Diagram](https://github.com/manojk1216/aws-sam-poc/blob/main/images/Squence_diagram.png)
