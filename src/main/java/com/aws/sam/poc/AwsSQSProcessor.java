@@ -2,6 +2,8 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,47 +18,50 @@ import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 
+import io.vavr.collection.Stream;
+import io.vavr.collection.Traversable;
+
 public class AwsSQSProcessor {
 	
 	public static final String QUEUE_NAME="CombinationProcessQueue";
 	
-	
-	public static ArrayList<String> processQueue(String S3data, Logger log) {
+	/**
+	 * 
+	 * @param S3data
+	 * @param log
+	 */
+	public static void processQueue(String S3data, Logger log) {
 	
 		log.info("AwsSQSProcessor started!!");
-		
-		ArrayList<String> messageCombinationList = new ArrayList<String>();
 		
 		try { 
 			AmazonSQS sqsClient = AmazonSQSClientBuilder.standard().withRegion(Regions.AP_SOUTH_1).build();
 			
-			//Send a message
-			log.info("Sending Message to Queue is : "+ QUEUE_NAME);
+			//Send message into the queue
+			log.info("Sending Messages to Queue is : "+ QUEUE_NAME);
 			sqsClient.sendMessage(new SendMessageRequest(QUEUE_NAME, S3data));
 			
-			//Receive Messages
+			//Receive Messages from Queue
 			ReceiveMessageRequest receiveMessageRequest = new ReceiveMessageRequest(QUEUE_NAME);
 			List<Message> messages = sqsClient.receiveMessage(receiveMessageRequest).getMessages();
 			log.info("Receiving Messages from Queue :" + QUEUE_NAME);
 			
-			
-			String messageId = "";
-			String messageQueue = "";
-			for (Message message:messages) {
-				messageQueue = message.getBody();
-				messageId = message.getMessageId();
-			}
-			
-			messageCombinationList = processJsonAndGetCombinations(messageQueue,log);
-			
-			//Delete Message from Queue :
-			
-			log.info("Delete Message from Queue : "+ QUEUE_NAME);
-			
-			String messageReceiptHandle = messages.get(0).getReceiptHandle();
-			sqsClient.deleteMessage(new DeleteMessageRequest(QUEUE_NAME, messageReceiptHandle));
-			
-			com.aws.sam.poc.AwsDynamoDbProcessor.process(messageId, messageCombinationList, log);
+			messages.stream().forEach(msg -> {
+				String messageId = msg.getMessageId();
+				String messageQueue = msg.getBody();
+				
+				List<String> messageCombinationList = new ArrayList<String>();
+				messageCombinationList = processJsonAndGetCombinations(messageQueue,log);
+				
+				//Delete Message from Queue 
+				log.info("Delete Message from Queue : "+ QUEUE_NAME);
+				
+				String messageReceiptHandle = messages.get(0).getReceiptHandle();
+				sqsClient.deleteMessage(new DeleteMessageRequest(QUEUE_NAME, messageReceiptHandle));
+				
+				//Insert the processed output into Dynamodb table
+				com.aws.sam.poc.AwsDynamoDbProcessor.process(messageId, messageCombinationList, log);
+			});
 			
 		}catch (AmazonSQSException amazonSQSException) {
 			log.error("Amazon Service exception in AwsSQSProcessor : "+ amazonSQSException.getMessage());
@@ -65,16 +70,16 @@ public class AwsSQSProcessor {
 		} catch (Exception e) {
 			log.error("Exception while executing the AwsSQSProcessor : "+ e.getMessage());
 		}
-		return messageCombinationList;
 	}
 
 	/**
 	 * 
-	 * @param context
+	 * @param messageQueue
+	 * @param log
 	 * @return
 	 */
-	public static ArrayList<String> processJsonAndGetCombinations(String messageQueue, Logger log) {
-		ArrayList<String> messageCombinationList;
+	public static List<String> processJsonAndGetCombinations(String messageQueue, Logger log) {
+		List<String> messageCombinationList;
 		log.info("The Message from queue is : "+ messageQueue);
 		
 		StringBuilder builder = new StringBuilder();
@@ -85,11 +90,12 @@ public class AwsSQSProcessor {
 		jsonArray.forEach((val)->{builder.append(val);});
 		
 		String messageToBeProcessed = builder.toString();
-		if (messageToBeProcessed.isBlank()) {
+		
+		if (messageToBeProcessed==null || messageToBeProcessed.isEmpty()) {
 			log.info("Character length is ZERO to process");
 			return null;
 		}
-		messageCombinationList = getCombinationsOfInputString(messageToBeProcessed, log);
+		messageCombinationList = getCombinationsOfInputString(messageToBeProcessed);
 						
 	    log.info("Processed Message is : "+ messageCombinationList);
 		return messageCombinationList;
@@ -100,18 +106,17 @@ public class AwsSQSProcessor {
 	 * @param text
 	 * @return
 	 */
-	protected static ArrayList<String> getCombinationsOfInputString(String text,  Logger log) {
-	    ArrayList<String> results = new ArrayList<String>();
-	   
-	    for (int i = 0; i < text.length(); i++) {
-	        // Record size as the list will change
-	        int resultsLength = results.size();
-	        for (int j = 0; j < resultsLength; j++) {
-	            results.add(text.charAt(i) + results.get(j));
-	        }
-	        results.add(Character.toString(text.charAt(i)));
-	        
-	    }
-	    return results;
+	protected static List<String> getCombinationsOfInputString(String text) {
+	    List<List<String>> results = new ArrayList<List<String>>() ;
+		
+	    IntStream.range(0, text.length()+1)
+        .forEach( i ->
+			results.add(Stream.ofAll(text.toCharArray())
+					.map(Character::toUpperCase)
+			        .combinations(i)
+			        .map(Traversable::mkString)
+			        .collect(Collectors.toList())));
+	    
+		return results.stream().flatMap(i -> i.stream().filter(s -> (s != null && s.length() > 0))).collect(Collectors.toList());  
 	}
 }
