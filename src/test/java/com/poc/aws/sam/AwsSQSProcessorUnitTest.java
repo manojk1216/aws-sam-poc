@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,25 +27,27 @@ public class AwsSQSProcessorUnitTest {
 
 	@Test
 	public void testInputMessageProcessing() {
-		List<String> processedText = AwsSQSProcessor
+		
+		String processedText = AwsSQSProcessor
 				.processJsonAndGetCombinations("{\r\n" + "	\"input\":\r\n" + "	[\r\n" + "		\"A\",\r\n"
 						+ "		\"B\",\r\n" + "		\"C\",\r\n" + "		\"D\"\r\n" + "	]\r\n" + "}", log);
-		List<String> expectedOuput = Arrays.asList("A", "B", "C", "D", "AB", "AC", "AD", "BC", "BD", "CD", "ABC", "ABD", "ACD", "BCD", "ABCD");
-		Assert.assertEquals(expectedOuput, processedText.stream().collect(Collectors.toList()));
+		 
+		String expectedOuput = "{\"response\":[\"A\",\"B\",\"C\",\"D\",\"AB\",\"AC\",\"AD\",\"BC\",\"BD\",\"CD\",\"ABC\",\"ABD\",\"ACD\",\"BCD\",\"ABCD\"]}";
+		Assert.assertEquals(expectedOuput, processedText);
 	}
 	
 	@Test
 	public void testSingleInputMessageProcessing() {
-		List<String> processedText = AwsSQSProcessor
+		String processedText = AwsSQSProcessor
 				.processJsonAndGetCombinations("{\r\n" + "	\"input\":\r\n" + "	[\r\n" + "		\"A\"\r\n" + "	]\r\n" + "}", log);
-		List<String> expectedOuput = Arrays.asList("A");
-		Assert.assertEquals(expectedOuput, processedText.stream().collect(Collectors.toList()));
+		String expectedOuput = "{\"response\":[\"A\"]}";
+		Assert.assertEquals(expectedOuput, processedText);
 	}
 	
 	
 	@Test
 	public void testEmptyInputMessageProcessing() {
-		List<String> processedText = AwsSQSProcessor
+		String processedText = AwsSQSProcessor
 				.processJsonAndGetCombinations("{\r\n" + "	\"input\":\r\n" + "	[]\r\n" + "}", log);
 		Assert.assertEquals(null, processedText);
 		

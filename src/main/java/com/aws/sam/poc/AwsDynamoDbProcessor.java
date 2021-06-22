@@ -1,7 +1,6 @@
 package com.aws.sam.poc;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -23,14 +22,16 @@ public class AwsDynamoDbProcessor {
 	 * @param messageArrayList
 	 * @param log
 	 */
-	public static void process(String messageId, List<String> messageArrayList, Logger log) {
+	public static void process(String messageId, String messageArrayList, String inputMessage, Logger log) {
 		
 		log.info("DynamoDb processor started!!");
 		log.info("message id is : "+messageId + "and arraylist is : "+messageArrayList);
 		try {
+			
 			AmazonDynamoDB dynamoDB = AmazonDynamoDBClientBuilder.standard().withRegion(Regions.AP_SOUTH_1).build();
 				
-			insertRecord(messageId, messageArrayList, log, dynamoDB);
+			insertRecord(messageId, messageArrayList, inputMessage, log, dynamoDB);
+			
 		} catch (AmazonDynamoDBException amDynamoDBException) {
 			log.error("Amazon DynamoDb exception in AwsDynamoDbProcessor : "+ amDynamoDBException.getMessage());
 			log.error("Status Code in AwsDynamoDbProcessor : "+ amDynamoDBException.getStatusCode()); 
@@ -48,12 +49,13 @@ public class AwsDynamoDbProcessor {
 	 * @param log
 	 * @param dynamoDB
 	 */
-	private static void insertRecord(String messageId, List<String> messageArrayList, Logger log,
+	private static void insertRecord(String messageId, String messageArrayList, String inputMessage, Logger log,
 			AmazonDynamoDB dynamoDB) {
 		
 		Map<String, AttributeValue> item = new HashMap<String, AttributeValue>();
 		item.put("MessageId", new AttributeValue(messageId));
-		item.put("ResultSet", new AttributeValue(messageArrayList));
+		item.put("MessageInput", new AttributeValue(inputMessage));
+		item.put("ProcessedResultSet", new AttributeValue(messageArrayList));
 		
 		
 		PutItemRequest putItemRequest = new PutItemRequest(TABLE_NAME, item);

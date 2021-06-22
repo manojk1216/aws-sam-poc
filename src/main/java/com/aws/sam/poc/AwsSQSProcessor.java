@@ -23,7 +23,7 @@ import io.vavr.collection.Traversable;
 
 public class AwsSQSProcessor {
 	
-	public static final String QUEUE_NAME="CombinationProcessQueue";
+public static final String QUEUE_NAME="CombinationProcessQueue";
 	
 	/**
 	 * 
@@ -50,8 +50,8 @@ public class AwsSQSProcessor {
 				String messageId = msg.getMessageId();
 				String messageQueue = msg.getBody();
 				
-				List<String> messageCombinationList = new ArrayList<String>();
-				messageCombinationList = processJsonAndGetCombinations(messageQueue,log);
+				
+				String messageCombinationList = processJsonAndGetCombinations(messageQueue,log);
 				
 				//Delete Message from Queue 
 				log.info("Delete Message from Queue : "+ QUEUE_NAME);
@@ -60,7 +60,7 @@ public class AwsSQSProcessor {
 				sqsClient.deleteMessage(new DeleteMessageRequest(QUEUE_NAME, messageReceiptHandle));
 				
 				//Insert the processed output into Dynamodb table
-				com.aws.sam.poc.AwsDynamoDbProcessor.process(messageId, messageCombinationList, log);
+				com.aws.sam.poc.AwsDynamoDbProcessor.process(messageId, messageCombinationList, messageQueue, log);
 			});
 			
 		}catch (AmazonSQSException amazonSQSException) {
@@ -78,8 +78,8 @@ public class AwsSQSProcessor {
 	 * @param log
 	 * @return
 	 */
-	public static List<String> processJsonAndGetCombinations(String messageQueue, Logger log) {
-		List<String> messageCombinationList;
+	public static String processJsonAndGetCombinations(String messageQueue, Logger log) {
+		String messageCombinationList = "";
 		log.info("The Message from queue is : "+ messageQueue);
 		
 		StringBuilder builder = new StringBuilder();
@@ -106,7 +106,7 @@ public class AwsSQSProcessor {
 	 * @param text
 	 * @return
 	 */
-	protected static List<String> getCombinationsOfInputString(String text) {
+	protected static String getCombinationsOfInputString(String text) {
 	    List<List<String>> results = new ArrayList<List<String>>() ;
 		
 	    IntStream.range(0, text.length()+1)
@@ -117,6 +117,12 @@ public class AwsSQSProcessor {
 			        .map(Traversable::mkString)
 			        .collect(Collectors.toList())));
 	    
-		return results.stream().flatMap(i -> i.stream().filter(s -> (s != null && s.length() > 0))).collect(Collectors.toList());  
+	    List<String> outputList = results.stream().flatMap(i -> i.stream().filter(s -> (s != null && s.length() > 0))).collect(Collectors.toList());
+	    
+	    JSONObject jsonObject = new JSONObject();
+	    JSONArray jsonArray = new JSONArray(outputList);
+	    jsonObject.put("response", jsonArray);
+	    
+	    return jsonObject.toString();
 	}
 }
