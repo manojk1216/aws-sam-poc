@@ -1,5 +1,8 @@
 # AWS SAM POC - Lambda, SQS, Dynamodb
 
+###Recording of POC
+[Play the AWS SAM poc recording](https://github.com/manojk1216/aws-sam-poc/blob/main/images/AWS_SAM_POC.mp4)
+
 ## Table Contents
 	1. Create Role from AWS Console
 	2. Create executable package to upload it to lambda fn
