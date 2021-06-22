@@ -30,17 +30,7 @@ public class AWSLambdaS3FunctionHandler implements RequestHandler<S3Event, Strin
 				String s3Object = s3Client.getObjectAsString(bucketName, file);
 				log.info(file + " File content is : " + s3Object);
 				com.aws.sam.poc.AwsSQSProcessor.processQueue(s3Object.toString(), log); });
-			
-//			fileName = event.getRecords().get(0).getS3().getObject().getKey();
-//			
-//			log.info("File received is : " + fileName + ", and bucket info is : " + bucketName);
-//			
-//			String s3Object = s3Client.getObjectAsString(bucketName, fileName);
-//			
-//			log.info(fileName + " File content is : " + s3Object);
-//			
-//			com.aws.sam.poc.AwsSQSProcessor.processQueue(s3Object.toString(), log);
-			
+				
 		} catch (AmazonS3Exception amS3Exception) {
 			log.error("Amazon S3 exception in Lambda Function Handler : " + amS3Exception.getMessage());
 			log.error("Status Code in Lambda Function Handler : " + amS3Exception.getStatusCode());
